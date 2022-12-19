@@ -1,12 +1,11 @@
 package com.example.assignment2
 
-import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var activityView: RecyclerView
 
     private var activities: ArrayList<Activity> = arrayListOf()
+    private var instance: MainActivity = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         activityView = findViewById(R.id.activity_list)
         activityView.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-        registerForContextMenu(activityView)
     }
 
     fun getActivities(category: String) {
@@ -68,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<Activity>, response: Response<Activity>) {
                         if (response.isSuccessful) {
                             response.body()?.let { activities.add(it) }
-                            activityView.adapter = ActivityAdapter(activities)
+                            activityView.adapter = ActivityAdapter(instance, activities)
                         }
                     }
 
@@ -99,30 +98,45 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.context_menu, menu)
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.send_to_friend -> {
-
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Send to Friend")
-                builder.setMessage("Are you sure you want to send this to a friend?")
-                builder.setPositiveButton("Yes") { _, _ ->
-                    val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
-                    activities[position].sent = true
-                    (activityView.adapter as ActivityAdapter).notifyDataSetChanged()
-                }
-                builder.setNegativeButton("No") { _, _ ->
-
-                }
-
-                val dialog: AlertDialog = builder.create()
-                dialog.show()
-
-                return true
+        menu?.findItem(R.id.send_to_friend)?.setOnMenuItemClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Send to Friend")
+            builder.setMessage("Are you sure you want to send this to a friend?")
+            builder.setPositiveButton("Yes") { _, _ ->
+                v?.setBackgroundColor(Color.LTGRAY)
             }
-            else -> return super.onContextItemSelected(item)
+            builder.setNegativeButton("No") { _, _ ->
+
+            }
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+
+            true
         }
     }
+//    override fun onContextItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.send_to_friend -> {
+//
+//                val builder = AlertDialog.Builder(this)
+//                builder.setTitle("Send to Friend")
+//                builder.setMessage("Are you sure you want to send this to a friend?")
+//                builder.setPositiveButton("Yes") { _, _ ->
+//                    val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
+//                    activities[position].sent = true
+//                    (activityView.adapter as ActivityAdapter).notifyDataSetChanged()
+//                }
+//                builder.setNegativeButton("No") { _, _ ->
+//
+//                }
+//
+//                val dialog: AlertDialog = builder.create()
+//                dialog.show()
+//
+//                return true
+//            }
+//            else -> return super.onContextItemSelected(item)
+//        }
+//    }
 }

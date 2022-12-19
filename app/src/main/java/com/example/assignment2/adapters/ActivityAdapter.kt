@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.example.assignment2.MainActivity
 import com.example.assignment2.R
 import com.example.assignment2.models.Activity
 
-class ActivityAdapter(private val dataSet: ArrayList<Activity>) :
+class ActivityAdapter(private val activity: MainActivity, private val dataSet: ArrayList<Activity>) :
     RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
 
     /**
@@ -79,6 +81,8 @@ class ActivityAdapter(private val dataSet: ArrayList<Activity>) :
         viewHolder.itemView.setOnLongClickListener {
             viewHolder.itemView.showContextMenu()
         }
+
+        activity.registerForContextMenu(viewHolder.itemView)
     }
 
     // Return the size of your dataset (invoked by the layout manager)
