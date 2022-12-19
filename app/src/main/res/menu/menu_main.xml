@@ -1,0 +1,51 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.assignment2.MainActivity">
+    <item
+        android:id="@+id/random"
+        android:orderInCategory="100"
+        android:title="Random"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+    android:id="@+id/education"
+        android:orderInCategory="100"
+        android:title="Education"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/recreational"
+        android:orderInCategory="100"
+        android:title="Recreational"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/diy"
+        android:orderInCategory="100"
+        android:title="DIY"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/charity"
+        android:orderInCategory="100"
+        android:title="Charity"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/cooking"
+        android:orderInCategory="100"
+        android:title="Cooking"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/relaxation"
+        android:orderInCategory="100"
+        android:title="Relaxation"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/music"
+        android:orderInCategory="100"
+        android:title="Music"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/busywork"
+        android:orderInCategory="100"
+        android:title="Busywork"
+        app:showAsAction="never" />
+</menu>

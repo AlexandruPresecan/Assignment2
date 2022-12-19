@@ -1,0 +1,5 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/send_to_friend"
+        android:title="Send to Friend" />
+</menu>
