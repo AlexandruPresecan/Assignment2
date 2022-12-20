@@ -8,7 +8,6 @@ data class Activity(
     val price: Double,
     val link: String,
     val key: String,
-    var favourite: Boolean = false,
-    var sent: Boolean = false
+    var favourite: Boolean = false
 )
 

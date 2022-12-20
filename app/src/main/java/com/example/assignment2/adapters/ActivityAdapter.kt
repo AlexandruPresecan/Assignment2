@@ -15,6 +15,8 @@ import com.example.assignment2.models.Activity
 class ActivityAdapter(private val activity: MainActivity, private val dataSet: ArrayList<Activity>) :
     RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
 
+    var sent: Set<String> = setOf()
+
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder)
@@ -27,6 +29,7 @@ class ActivityAdapter(private val activity: MainActivity, private val dataSet: A
         val priceView: TextView
         val linkView: TextView
         val favouriteView: ImageView
+        val keyView: TextView
 
         init {
             // Define click listener for the ViewHolder's View
@@ -37,6 +40,7 @@ class ActivityAdapter(private val activity: MainActivity, private val dataSet: A
             priceView = view.findViewById(R.id.price_text)
             linkView = view.findViewById(R.id.link_text)
             favouriteView = view.findViewById(R.id.favourite)
+            keyView = view.findViewById(R.id.key_text)
         }
     }
 
@@ -60,13 +64,14 @@ class ActivityAdapter(private val activity: MainActivity, private val dataSet: A
         viewHolder.participantsView.text = dataSet[position].participants.toString()
         viewHolder.priceView.text = dataSet[position].price.toString() + "$"
         viewHolder.linkView.text = dataSet[position].link
+        viewHolder.keyView.text = dataSet[position].key
 
         if (dataSet[position].favourite)
             viewHolder.favouriteView.visibility = View.VISIBLE
         else
             viewHolder.favouriteView.visibility = View.INVISIBLE
 
-        if (dataSet[position].sent)
+        if (sent.contains(dataSet[position].key))
             viewHolder.itemView.setBackgroundColor(Color.LTGRAY)
         else
             viewHolder.itemView.setBackgroundColor(Color.WHITE)

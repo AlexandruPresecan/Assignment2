@@ -6,6 +6,7 @@ import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -104,6 +105,7 @@ class MainActivity : AppCompatActivity() {
             builder.setMessage("Are you sure you want to send this to a friend?")
             builder.setPositiveButton("Yes") { _, _ ->
                 v?.setBackgroundColor(Color.LTGRAY)
+                (activityView.adapter as ActivityAdapter).sent = (activityView.adapter as ActivityAdapter).sent.plus(v?.findViewById<TextView>(R.id.key_text)?.text.toString())
             }
             builder.setNegativeButton("No") { _, _ ->
 
