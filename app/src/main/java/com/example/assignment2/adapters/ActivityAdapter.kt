@@ -25,6 +25,7 @@ class ActivityAdapter(private val activity: MainActivity, private val dataSet: A
         val typeView: TextView
         val participantsView: TextView
         val priceView: TextView
+        val linkView: TextView
         val favouriteView: ImageView
 
         init {
@@ -34,6 +35,7 @@ class ActivityAdapter(private val activity: MainActivity, private val dataSet: A
             typeView = view.findViewById(R.id.type_text)
             participantsView = view.findViewById(R.id.participants_text)
             priceView = view.findViewById(R.id.price_text)
+            linkView = view.findViewById(R.id.link_text)
             favouriteView = view.findViewById(R.id.favourite)
         }
     }
@@ -56,7 +58,8 @@ class ActivityAdapter(private val activity: MainActivity, private val dataSet: A
         viewHolder.accessibilityView.text = dataSet[position].accessibility.toString()
         viewHolder.typeView.text = dataSet[position].type
         viewHolder.participantsView.text = dataSet[position].participants.toString()
-        viewHolder.priceView.text = dataSet[position].price.toString()
+        viewHolder.priceView.text = dataSet[position].price.toString() + "$"
+        viewHolder.linkView.text = dataSet[position].link
 
         if (dataSet[position].favourite)
             viewHolder.favouriteView.visibility = View.VISIBLE

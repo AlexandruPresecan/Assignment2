@@ -115,28 +115,4 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-//    override fun onContextItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.send_to_friend -> {
-//
-//                val builder = AlertDialog.Builder(this)
-//                builder.setTitle("Send to Friend")
-//                builder.setMessage("Are you sure you want to send this to a friend?")
-//                builder.setPositiveButton("Yes") { _, _ ->
-//                    val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
-//                    activities[position].sent = true
-//                    (activityView.adapter as ActivityAdapter).notifyDataSetChanged()
-//                }
-//                builder.setNegativeButton("No") { _, _ ->
-//
-//                }
-//
-//                val dialog: AlertDialog = builder.create()
-//                dialog.show()
-//
-//                return true
-//            }
-//            else -> return super.onContextItemSelected(item)
-//        }
-//    }
 }
